@@ -4,25 +4,25 @@ export default class PhotoGrid extends Component {
 
 	makePhotoGrid() {
 		const { photos, actions:{ openFullscreen }, viewMode:columns } = this.props;
+		const rowTemplate = row=> <div className='row-flex' key={grid.length}> {row}</div>;
+		const photoTemplate = ({index, photo, openFullscreen})=>
+				<div key={index} className='photo' onClick={()=>openFullscreen(photo.originalSrc)}><img
+						src={photo.src}/></div>;
 		let grid = [];
 		let row = [];
 
 		photos.forEach((photo, index) => {
-			if ((index + 1) % (columns + 1) == 0) {
-				grid.push(
-						<div className='row-flex' key={grid.length}>
-							{row}
-						</div>);
+			row.push(photoTemplate({index, photo, openFullscreen}));
+
+			if ((index + 1) % (columns) == 0) {
+				console.log('row', row);
+				grid.push(rowTemplate(row));
 				row = [];
 
-			} else {
-				row.push(
-						<div key={index} className='photo' onClick={()=>openFullscreen(photo.originalSrc)}>
-							<img src={photo.src}/>
-						</div>
-				)
 			}
 		});
+
+		grid.push(rowTemplate(row));
 		return grid;
 	}
 

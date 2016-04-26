@@ -14,7 +14,7 @@ body {
 
 .photos .row-flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .photos .photo {
@@ -29,15 +29,15 @@ body {
 }
 
 .small .photo {
-    width: 18%;
+    width: 20%;
 }
 
 .medium .photo {
-    width: 30%;
+    width: 32%;
 }
 
 .big .photo {
-    width: 48%;
+    width: 49%;
 }
 
 .photos .list-item {

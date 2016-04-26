@@ -62,7 +62,7 @@ export default function photoFeed(state = initialState, action) {
 							case mode.LIST:
 								return {
 									...photo,
-									src: photo.originalSrc
+									src: photo.originalSrc.replace(flickr.SMALL_240, flickr.MEDIUM_500)
 								};
 
 							case mode.SMALL:
