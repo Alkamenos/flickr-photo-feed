@@ -11,11 +11,10 @@ export function getPhotos(url=flickr.FLICKR_URL) {
 		$.getJSON(url)
 			.done(response => {
 					let photos = response.items.map((item) => ({
-						title: item.title + '_',
+						title: item.title,
 						link: item.link,
 						src: item.media.m.replace(flickr.SMALL_240, flickr.SMALL_320),
 						originalSrc: item.media.m,
-						author: item.author,
 						published: Date.parse(item.published), //todo Moment.js?
 						tags: item.tags
 					}));

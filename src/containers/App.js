@@ -10,9 +10,7 @@ class App extends Component {
 		const { photoFeed, dispatch } = this.props;
 		const actions = bindActionCreators(PageActions, dispatch);
 
-		return <div className='container-fluid'>
-			<Page photoFeed={photoFeed} actions={actions}/>
-		</div>
+		return <Page photoFeed={photoFeed} actions={actions}/>
 	}
 }
 

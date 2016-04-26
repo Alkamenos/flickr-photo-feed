@@ -19,7 +19,7 @@ export default class FullscreenPhoto extends Component {
 		const { actions:{ closeFullscreen }, fullscreenImage } = this.props;
 
 		return <div className='fullscreen-photo' onClick={()=>closeFullscreen()}>
-			<button className='btn btn-danger'>X</button>
+			<button className='btn btn-danger'><i className='fa fa-times-circle fa-2x'/></button>
 			<img src={fullscreenImage}/>
 		</div>
 	}

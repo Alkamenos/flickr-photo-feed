@@ -7,12 +7,21 @@ import PhotoList from './PhotoList';
 export default class Photos extends Component {
 	render() {
 		const { actions, photos, viewMode } = this.props;
+		const style = classnames('photos container-fluid', {
+			'small': viewMode === mode.SMALL,
+			'medium': viewMode === mode.MEDIUM,
+			'big': viewMode === mode.BIG
+		});
+		if (viewMode === mode.LIST) {
+			return <div
+					className={style}>
+				<PhotoList actions={actions} photos={photos}/>
+			</div>
+		}
 
 		return <div
-				className={classnames('photos', { 'medium': viewMode === mode.MEDIUM, 'big': viewMode === mode.BIG })}>
-
-			{viewMode === mode.LIST ? <PhotoList actions={actions} photos={photos}/> :
-					<PhotoGrid actions={actions} photos={photos} viewMode={viewMode}/>}
+				className={style}>
+			<PhotoGrid actions={actions} photos={photos} viewMode={viewMode}/>
 		</div>
 	}
 }
@@ -21,5 +30,4 @@ Photos.propTypes = {
 	photos: PropTypes.array.isRequired,
 	viewMode: PropTypes.number.isRequired,
 	actions: PropTypes.object.isRequired
-
 };

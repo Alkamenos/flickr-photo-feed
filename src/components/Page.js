@@ -13,26 +13,23 @@ export default class Page extends Component {
 		const { photoFeed, actions } = this.props;
 		const photos = photoFeed.photos;
 
+		if (photos.error) {
+			return <p className='error'> Something went wrong... :(</p>
+
+		} else if (photos.fetching) {
+			return <p>Loading...</p>
+
+		} else if (photoFeed.fullscreen) {
+			return <div>
+				<FullscreenPhoto actions={actions} fullscreenImage={photoFeed.fullscreenImage}/>
+			</div>
+
+		}
 
 		return <div>
-			{!photoFeed.fullscreen ?
-					<div className='row'>
-						<Controls actions={actions} orderBy={photoFeed.orderBy} viewMode={photoFeed.viewMode}/>
-
-						{ photos.error ? Page.showError(photos.error) : '' }
-						{ photos.fetching ? Page.showLoading() :
-								<Photos photos={photos.data} viewMode={photoFeed.viewMode} actions={actions}/> }
-					</div> : <FullscreenPhoto actions={actions} fullscreenImage={photoFeed.fullscreenImage}/>
-			}
+			<Controls actions={actions} orderBy={photoFeed.orderBy} viewMode={photoFeed.viewMode}/>
+			<Photos photos={photos.data} viewMode={photoFeed.viewMode} actions={actions}/>
 		</div>
-	}
-
-	static showLoading() {
-		return <p>Loading...</p>
-	}
-
-	static showError() {
-		return <p className='error'> Something went wrong... :(</p>
 	}
 }
 

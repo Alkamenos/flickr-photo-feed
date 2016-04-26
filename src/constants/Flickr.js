@@ -3,7 +3,7 @@ export const FLICKR_URL = 'https://api.flickr.com/services/feeds/photos_public.g
 export const SMALL_150 = '_q';
 export const SMALL_240 = '_m';
 export const SMALL_320 = '_n';
-
+export const MEDIUM_500 = '';
 export const MEDIUM_640 = '_z';
 export const MEDIUM_800 = '_c';
 
