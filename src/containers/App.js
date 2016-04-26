@@ -7,18 +7,18 @@ import * as PageActions from '../actions/PageActions';
 
 class App extends Component {
 	render() {
-		const { photofeed, dispatch } = this.props;
+		const { photoFeed, dispatch } = this.props;
 		const actions = bindActionCreators(PageActions, dispatch);
 
 		return <div className='container-fluid'>
-			<Page photofeed={photofeed} actions={actions} />
+			<Page photoFeed={photoFeed} actions={actions}/>
 		</div>
 	}
 }
 
 function mapStateToProps(state) {
 	return {
-		photofeed: state.photofeed
+		photoFeed: state.photoFeed
 	}
 }
 

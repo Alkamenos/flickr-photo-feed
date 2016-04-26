@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
-
 import * as order from '../constants/OrderOptions';
 import * as mode from '../constants/ViewMode';
 
@@ -29,7 +28,6 @@ export default class Controls extends Component {
 					onClick={() => actions.setViewMode(mode.BIG)}>
 				<i className='fa fa-stop'/>
 			</button>
-
 
 			<button
 				className={classnames('btn btn-primary', { 'active': orderBy === order.DATE_ASC || orderBy === order.DATE_DESC })}

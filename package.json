@@ -22,7 +22,6 @@
     "eslint": "1.10.3",
     "eslint-loader": "1.2.1",
     "eslint-plugin-react": "3.16.1",
-    "express": "4.13.4",
     "npm-install-webpack-plugin": "2.0.2",
     "postcss-loader": "0.8.0",
     "precss": "1.4.0",
@@ -36,7 +35,9 @@
   "dependencies": {
     "babel-polyfill": "6.5.0",
     "babel-runtime": "6.5.0",
+    "express": "4.13.4",
     "jquery": "2.2.3",
+    "lodash": "4.11.1",
     "react": "0.14.7",
     "react-dom": "0.14.7",
     "react-redux": "4.4.0",

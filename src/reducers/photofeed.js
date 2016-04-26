@@ -3,6 +3,9 @@ import * as mode from '../constants/ViewMode';
 import * as type from '../constants/ActionTypes';
 import * as flickr from '../constants/Flickr';
 
+import _orderBy from 'lodash/orderBy';
+
+
 const initialState = {
 	photos: {
 		data: [],
@@ -10,12 +13,12 @@ const initialState = {
 		error: ''
 	},
 	orderBy: '',
-	viewMode: mode.MEDIUM
-
+	viewMode: mode.MEDIUM,
+	fullscreen: false,
+	fullscreenImage: ''
 };
 
-export default function photofeed(state = initialState, action) {
-
+export default function photoFeed(state = initialState, action) {
 	switch (action.type) {
 		case type.GET_PHOTOS_REQUEST:
 			return {
@@ -55,12 +58,11 @@ export default function photofeed(state = initialState, action) {
 				photos: {
 					...state.photos,
 					data: state.photos.data.map((photo)=> {
-
 						switch (action.mode) {
 							case mode.LIST:
 								return {
 									...photo,
-									src: photo.originalSrc//.replace(flickr.SMALL_240, flickr.SMALL_150)
+									src: photo.originalSrc
 								};
 
 							case mode.SMALL:
@@ -94,29 +96,67 @@ export default function photofeed(state = initialState, action) {
 				orderBy: action.order,
 				photos: {
 					...state.photos,
-					data: state.photos.data.sort((a, b)=> {
-						switch (action.order) {
-							case order.DATE_ASC:
-								return a.published < b.published;
-
-							case order.DATE_DESC:
-								return a.published >= b.published;
-
-							case order.NAME_ASC:
-								return a.title < b.title;
-
-							case order.NAME_DESC:
-								return a.title >= b.title;
-
-							default:
-								return false
-						}
-					})
+					data: orderPhotos(state.photos.data, action.order)
 				}
+			};
+
+		case type.OPEN_FULLSCREEN:
+			return {
+				...state,
+				fullscreen: true,
+				fullscreenImage: action.url.replace(flickr.SMALL_240, flickr.LARGE_1024)
+			};
+
+		case type.CLOSE_FULLSCREEN:
+			return {
+				...state,
+				fullscreen: false,
+				fullscreenImage: ''
 			};
 
 		default:
 			return state;
 	}
+}
+
+function orderPhotos(data, orderBy) {
+	switch (orderBy) {
+		case order.DATE_ASC:
+			return _orderBy(data, 'published', 'asc');
+
+		case order.DATE_DESC:
+			return _orderBy(data, 'published', 'desc');
+
+		case order.NAME_ASC:
+			return _orderBy(data, 'title', 'asc');
+
+		case order.NAME_DESC:
+			return _orderBy(data, 'title', 'desc');
+
+		default:
+			return data
+	}
 
 }
+
+
+/*	data: state.photos.data.slice().sort((a, b)=> {
+ console.log(action.order);
+ switch (action.order) {
+ case order.DATE_ASC:
+ return a.published > b.published;
+
+ case order.DATE_DESC:
+ return a.published < b.published;
+
+ case order.NAME_ASC:
+ return a.title > b.title;
+
+ case order.NAME_DESC:
+ return a.title < b.title;
+
+ default:
+ return false
+ }
+ })
+ }*/

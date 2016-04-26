@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import photofeed from './photofeed'
+import photoFeed from './photoFeed'
 
 export default combineReducers({
-	photofeed
+	photoFeed
 })

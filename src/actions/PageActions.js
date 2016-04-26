@@ -11,7 +11,7 @@ export function getPhotos(url=flickr.FLICKR_URL) {
 		$.getJSON(url)
 			.done(response => {
 					let photos = response.items.map((item) => ({
-						title: item.title,
+						title: item.title + '_',
 						link: item.link,
 						src: item.media.m.replace(flickr.SMALL_240, flickr.SMALL_320),
 						originalSrc: item.media.m,
@@ -47,5 +47,19 @@ export function setViewMode(mode){
 	return {
 		type: type.CHANGE_VIEW_MODE,
 		mode
+	};
+}
+
+export function openFullscreen(url) {
+	return {
+		type: type.OPEN_FULLSCREEN,
+		url
+	};
+}
+
+export function closeFullscreen() {
+	console.log('fdfsdf');
+	return {
+		type: type.CLOSE_FULLSCREEN
 	};
 }
