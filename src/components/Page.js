@@ -23,7 +23,6 @@ export default class Page extends Component {
 			return <div>
 				<FullscreenPhoto actions={actions} fullscreenImage={photoFeed.fullscreenImage}/>
 			</div>
-
 		}
 
 		return <div>

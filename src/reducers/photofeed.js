@@ -68,13 +68,13 @@ export default function photoFeed(state = initialState, action) {
 							case mode.SMALL:
 								return {
 									...photo,
-									src: photo.originalSrc
+									src: photo.originalSrc.replace(flickr.SMALL_240, flickr.SMALL_320)
 								};
 
 							case mode.MEDIUM:
 								return {
 									...photo,
-									src: photo.originalSrc.replace(flickr.SMALL_240, flickr.SMALL_320)
+									src: photo.originalSrc.replace(flickr.SMALL_240, flickr.MEDIUM_500)
 								};
 
 							case mode.BIG:
@@ -138,25 +138,3 @@ function orderPhotos(data, orderBy) {
 	}
 
 }
-
-
-/*	data: state.photos.data.slice().sort((a, b)=> {
- console.log(action.order);
- switch (action.order) {
- case order.DATE_ASC:
- return a.published > b.published;
-
- case order.DATE_DESC:
- return a.published < b.published;
-
- case order.NAME_ASC:
- return a.title > b.title;
-
- case order.NAME_DESC:
- return a.title < b.title;
-
- default:
- return false
- }
- })
- }*/

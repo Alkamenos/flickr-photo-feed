@@ -57,7 +57,6 @@ export function openFullscreen(url) {
 }
 
 export function closeFullscreen() {
-	console.log('fdfsdf');
 	return {
 		type: type.CLOSE_FULLSCREEN
 	};
